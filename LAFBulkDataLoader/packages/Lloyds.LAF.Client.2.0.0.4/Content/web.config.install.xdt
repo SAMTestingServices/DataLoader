@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">  
+  <!-- Config sections -->
+  <configSections xdt:Transform="InsertBefore(/configuration/*[1])"></configSections>
+  <configSections>
+    <section name="system.identityModel"
+             type="System.IdentityModel.Configuration.SystemIdentityModelSection, System.IdentityModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"
+             xdt:Transform="Insert" />
+    <section name="system.identityModel.services"
+             type="System.IdentityModel.Services.Configuration.SystemIdentityModelServicesSection, System.IdentityModel.Services, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"
+             xdt:Transform="Insert" />
+  </configSections>
+  
+  <!-- System.webServer -->  
+  <system.webServer xdt:Transform="InsertIfMissing">
+  </system.webServer>
+  <system.webServer>
+    <modules xdt:Transform="InsertIfMissing">
+    </modules>
+    <handlers xdt:Transform="InsertIfMissing">
+    </handlers>
+  </system.webServer>
+  <system.webServer>
+    <handlers>
+      <add name="LafDisplayClaimsHandler"
+           path="lafDisplayClaimsHandler.axd"
+           verb="GET"
+           type="Lloyds.LAF.IdentityModel.Web.Handlers.DisplayClaimsHandler, Lloyds.LAF.IdentityModel"
+           preCondition="integratedMode"
+           xdt:Transform="Insert" />
+    </handlers>
+    <modules>
+      <!-- The session authentication module and the federation authentication module have to be in this order! 
+           SAM FIRST, THEN FAM DO NOT CHANGE IT OR THE TOKEN ISNT REMOVED FROM THE CACHE -->
+      <add name="LafSessionAuthenticationModule"
+           type="Lloyds.LAF.IdentityModel.Services.LafSessionAuthenticationModule, Lloyds.LAF.IdentityModel"
+           preCondition="managedHandler"
+           xdt:Transform="Insert"/>
+      <add name="LafWsFederationAuthenticationModule"
+           type="Lloyds.LAF.IdentityModel.Services.LafWsFederationAuthenticationModule, Lloyds.LAF.IdentityModel"
+           preCondition="managedHandler"
+           xdt:Transform="Insert"/>
+    </modules>
+  </system.webServer>
+
+  <!-- System.serviceModel -->
+  <system.serviceModel xdt:Transform="InsertIfMissing"></system.serviceModel>
+  <system.serviceModel>
+    <bindings xdt:Transform="InsertIfMissing"></bindings>
+  </system.serviceModel>
+  <system.serviceModel>
+    <bindings>
+      <ws2007HttpBinding xdt:Transform="InsertIfMissing"></ws2007HttpBinding>
+    </bindings>
+    <client xdt:Transform="InsertIfMissing"></client>
+    <behaviors xdt:Transform="InsertIfMissing"></behaviors>
+  </system.serviceModel>
+  <system.serviceModel>   
+    <behaviors>
+      <endpointBehaviors xdt:Transform="InsertIfMissing"></endpointBehaviors>
+    </behaviors>
+  </system.serviceModel>
+  <system.serviceModel>
+    <bindings>     
+      <ws2007HttpBinding>
+        <binding name="LafWS2007HttpBinding" maxBufferPoolSize="2147483647" maxReceivedMessageSize="2147483647" xdt:Transform="Insert">
+          <readerQuotas maxDepth="2147483647" maxStringContentLength="2147483647" maxArrayLength="2147483647" maxBytesPerRead="2147483647" maxNameTableCharCount="2147483647" />
+          <security mode="TransportWithMessageCredential">
+            <transport clientCredentialType="None" />
+            <message clientCredentialType="Certificate" />
+          </security>
+        </binding>
+      </ws2007HttpBinding>
+    </bindings>
+    <client>
+      <endpoint address="https://testintwebservicesecure.appdev.development.lloydsdev/AuditService.svc" 
+                behaviorConfiguration="LAFEndpointBehavior" 
+                binding="ws2007HttpBinding" 
+                bindingConfiguration="LafWS2007HttpBinding" 
+                contract="Lloyds.LAF.WebServices.Contracts.IAuditService" 
+                name="AuditService"
+                xdt:Transform="Insert">
+        <identity>
+          <dns value="service.laf.appdev" />
+        </identity>
+      </endpoint>
+      <endpoint address="https://testintwebservicesecure.appdev.development.lloydsdev/SecurityTokenCacheService.svc" 
+                behaviorConfiguration="LAFEndpointBehavior" 
+                binding="ws2007HttpBinding" 
+                bindingConfiguration="LafWS2007HttpBinding" 
+                contract="Lloyds.LAF.WebServices.Contracts.ISecurityTokenCache" 
+                name="SecurityTokenCache"
+                xdt:Transform="Insert">
+        <identity>
+          <dns value="service.laf.appdev" />
+        </identity>
+      </endpoint>
+      <endpoint address="https://testintwebservicesecure.appdev.development.lloydsdev/TokenReplayCacheService.svc" 
+                behaviorConfiguration="LAFEndpointBehavior" 
+                binding="ws2007HttpBinding" 
+                bindingConfiguration="LafWS2007HttpBinding" 
+                contract="Lloyds.LAF.WebServices.Contracts.ITokenReplayCache" 
+                name="TokenReplayCache"
+                xdt:Transform="Insert">
+        <identity>
+          <dns value="service.laf.appdev" />
+        </identity>
+      </endpoint>     
+    </client>
+    <behaviors>
+      <endpointBehaviors>
+        <behavior name="LAFEndpointBehavior" xdt:Transform="Insert">
+          <clientCredentials>
+            <clientCertificate x509FindType="FindBySubjectName" findValue="service.laf.appdev" storeLocation="LocalMachine" storeName="My" />
+            <serviceCertificate>
+              <authentication certificateValidationMode="PeerOrChainTrust" revocationMode="NoCheck" />
+            </serviceCertificate>
+          </clientCredentials>
+        </behavior>      
+      </endpointBehaviors>
+    </behaviors>
+  </system.serviceModel>
+
+  <!-- system.identityModel.services -->  
+  <system.identityModel xdt:Transform="Insert">
+    <identityConfiguration>      
+      <tokenReplayDetection enabled="true" expirationPeriod="08:02:00" />
+      <caches>
+        <sessionSecurityTokenCache type="Lloyds.LAF.IdentityModel.Tokens.SharedSessionSecurityTokenCache, Lloyds.LAF.IdentityModel" />
+        <tokenReplayCache type="Lloyds.LAF.IdentityModel.Tokens.SharedTokenReplayCache, Lloyds.LAF.IdentityModel" />
+      </caches>
+      <securityTokenHandlers>
+        <securityTokenHandlerConfiguration maximumClockSkew="00:02:00" />
+        <remove type="System.IdentityModel.Tokens.SessionSecurityTokenHandler, System.IdentityModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+        <add type="Lloyds.LAF.IdentityModel.Services.LafSessionSecurityTokenHandler, Lloyds.LAF.IdentityModel">
+          <sessionTokenRequirement lifetime="00:25:00" />
+        </add>
+      </securityTokenHandlers>
+      <audienceUris>
+        <add value="https://devexample.appdev.development.lloydsdev/" />
+      </audienceUris>
+      <issuerNameRegistry type="Lloyds.LAF.IdentityModel.Tokens.TrustedIssuerNameRegistry, Lloyds.LAF.IdentityModel, Version=1.0.0.0, Culture=neutral">
+        <trustedIssuers>
+          <add subject="CN=signing.laf.appdev, OU=ITG, O=Lloyd's, L=London, S=England, C=GB" />
+        </trustedIssuers>
+      </issuerNameRegistry>
+      <certificateValidation certificateValidationMode="None" />
+    </identityConfiguration>
+  </system.identityModel>
+  <system.identityModel.services xdt:Transform="Insert">
+    <federationConfiguration>
+      <serviceCertificate>
+        <certificateReference findValue="encryption.laf.appdev" x509FindType="FindBySubjectName" />
+      </serviceCertificate>
+      <cookieHandler requireSsl="true" name="FedAuth_Example" hideFromScript="true" />
+      <wsFederation passiveRedirectEnabled="true" issuer="https://intsecure.appdev.development.lloydsdev" realm="https://devexample.appdev.development.lloydsdev" requireHttps="true" />
+    </federationConfiguration>
+  </system.identityModel.services>
+</configuration>

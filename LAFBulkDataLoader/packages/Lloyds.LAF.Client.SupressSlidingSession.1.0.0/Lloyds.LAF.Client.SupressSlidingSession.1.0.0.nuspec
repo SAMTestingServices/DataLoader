@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Lloyds.LAF.Client.SupressSlidingSession</id>
+    <version>1.0.0</version>
+    <title>LAF Client SupressSlidingSession</title>
+    <authors>ITG</authors>
+    <owners>ITG</owners>
+    <iconUrl>http://www.lloyds.com/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This will inject into a web request header from the server at the BeginRequest event of a request life cycle the header: 
+X-Suppress-Sliding-Session = true</description>
+    <releaseNotes>1.0.0.0
+      1) Initial version</releaseNotes>
+    <copyright>Copyright Lloyds of London 2015</copyright>
+    <tags>LAF Client X-Suppress-Sliding-Session</tags>
+  </metadata>
+</package>

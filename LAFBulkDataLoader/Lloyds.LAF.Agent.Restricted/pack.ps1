@@ -1,0 +1,1 @@
+﻿nuget pack Lloyds.LAF.Agent.Restricted.nuspec -OutputDirectory "Packages"

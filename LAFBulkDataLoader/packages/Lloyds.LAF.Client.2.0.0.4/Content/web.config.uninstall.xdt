@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+
+  <configSections>
+    <section name="system.identityModel" xdt:Transform="Remove" xdt:Locator="Match(name)" />
+    <section name="system.identityModel.services" xdt:Transform="Remove" xdt:Locator="Match(name)" />
+  </configSections>
+  <system.identityModel xdt:Transform="Remove" />
+  <system.identityModel.services xdt:Transform="Remove" />
+  <system.webServer>
+    <handlers>
+      <add name="LafDisplayClaimsHandler" xdt:Transform="Remove" xdt:Locator="Match(name)" />
+    </handlers>
+    <modules>      
+      <add name="LafSessionAuthenticationModule" xdt:Transform="Remove" xdt:Locator="Match(name)" />
+      <add name="LafWsFederationAuthenticationModule" xdt:Transform="Remove" xdt:Locator="Match(name)" />
+    </modules>
+  </system.webServer>
+  <system.serviceModel>
+    <bindings>
+      <ws2007HttpBinding>
+        <binding name="LafWS2007HttpBinding" xdt:Transform="Remove" xdt:Locator="Match(name)" />
+      </ws2007HttpBinding>
+    </bindings>
+    <client>
+      <endpoint contract="Lloyds.LAF.WebServices.Contracts.IAuditService" xdt:Transform="Remove" xdt:Locator="Match(contract)" />      
+      <endpoint contract="Lloyds.LAF.WebServices.Contracts.ISecurityTokenCache" xdt:Transform="Remove" xdt:Locator="Match(contract)" />
+      <endpoint contract="Lloyds.LAF.WebServices.Contracts.ITokenReplayCache" xdt:Transform="Remove" xdt:Locator="Match(contract)" />
+    </client>
+    <behaviors>
+      <endpointBehaviors>
+        <behavior name="LAFEndpointBehavior" xdt:Transform="Remove" xdt:Locator="Match(name)" />          
+      </endpointBehaviors>
+    </behaviors>
+  </system.serviceModel>
+</configuration>

@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C225F484-DCCF-4F73-A1B0-33A064CADFC3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LAFBulkDataLoader</RootNamespace>
+    <AssemblyName>LAFBulkDataLoader</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>C:\temp\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>4102E54D5A004DEE5A0A31988A90FC9D176358E8</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>LAFBulkDataLoader_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Lloyds.LAF.Audit">
+      <HintPath>DLLs\Lloyds.LAF.Audit.dll</HintPath>
+    </Reference>
+    <Reference Include="Lloyds.LAF.IdentityModel">
+      <HintPath>..\packages\Lloyds.LAF.Client.2.0.0.4\lib\net45\Lloyds.LAF.IdentityModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Lloyds.LAF.IdentityModel.SupressSlidingSession">
+      <HintPath>..\packages\Lloyds.LAF.Client.SupressSlidingSession.1.0.0\lib\Lloyds.LAF.IdentityModel.SupressSlidingSession.dll</HintPath>
+    </Reference>
+    <Reference Include="Lloyds.LAF.WebServices.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLLs\Lloyds.LAF.WebServices.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceReferences, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLLs\ServiceReferences.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataModelObjects\ExcelWorksheets\IInputData.cs" />
+    <Compile Include="DataModelObjects\SQLTables\LAFUserData.cs" />
+    <Compile Include="DataModelObjects\SQLTables\LAFUserGroupCredentialValue.cs" />
+    <Compile Include="DataModelObjects\SQLTables\LAFUGCVData.cs" />
+    <Compile Include="Dapper\SqlMapper.cs" />
+    <Compile Include="DataModelObjects\SQLTables\LAFUniformResourceNameData.cs" />
+    <Compile Include="Utilities\ExcelMethods.cs" />
+    <Compile Include="Forms\frmDeleteUsersFromUserGroups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDeleteUsersFromUserGroups.Designer.cs">
+      <DependentUpon>frmDeleteUsersFromUserGroups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmDeleteCredsFromUserGroups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDeleteCredsFromUserGroups.Designer.cs">
+      <DependentUpon>frmDeleteCredsFromUserGroups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCreateUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCreateUsers.Designer.cs">
+      <DependentUpon>frmCreateUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddUsersToUserGroups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddUsersToUserGroups.Designer.cs">
+      <DependentUpon>frmAddUsersToUserGroups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmDeleteCredValues.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDeleteCredValues.Designer.cs">
+      <DependentUpon>frmDeleteCredValues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmLAFDAUserGroups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLAFDAUserGroups.Designer.cs">
+      <DependentUpon>frmLAFDAUserGroups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmDeleteUserGroups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDeleteUserGroups.Designer.cs">
+      <DependentUpon>frmDeleteUserGroups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataModelObjects\ExcelWorksheets\UserGroupMembers.cs" />
+    <Compile Include="DataModelObjects\ExcelWorksheets\UserGroupCredentialValues.cs" />
+    <Compile Include="Forms\frmAddCredValuesUserGroups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddCredValuesUserGroups.Designer.cs">
+      <DependentUpon>frmAddCredValuesUserGroups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataModelObjects\ExcelWorksheets\Users.cs" />
+    <Compile Include="DataModelObjects\ExcelWorksheets\DAUserGroups.cs" />
+    <Compile Include="DataModelObjects\ExcelWorksheets\UserGroups.cs" />
+    <Compile Include="DataProcessing\DataProcessingMethods.cs" />
+    <Compile Include="Forms\frmCreateUserGroups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCreateUserGroups.Designer.cs">
+      <DependentUpon>frmCreateUserGroups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmCreateCredValues.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCreateCredValues.Designer.cs">
+      <DependentUpon>frmCreateCredValues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmHome.Designer.cs">
+      <DependentUpon>frmHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmOperationSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmOperationSelect.Designer.cs">
+      <DependentUpon>frmOperationSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataModelObjects\ExcelWorksheets\CredentialValues.cs" />
+    <Compile Include="DataModelObjects\SQLTables\LAFUserGroups.cs" />
+    <Compile Include="DataModelObjects\SQLTables\LAFCredentialData.cs" />
+    <Compile Include="DataModelObjects\SQLTables\LAFApplicationData.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataModelObjects\SQLTables\LAFUserGroupMembers.cs" />
+    <EmbeddedResource Include="Forms\frmDeleteUsersFromUserGroups.resx">
+      <DependentUpon>frmDeleteUsersFromUserGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDeleteCredsFromUserGroups.resx">
+      <DependentUpon>frmDeleteCredsFromUserGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCreateUsers.resx">
+      <DependentUpon>frmCreateUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddUsersToUserGroups.resx">
+      <DependentUpon>frmAddUsersToUserGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddCredValuesUserGroups.resx">
+      <DependentUpon>frmAddCredValuesUserGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDeleteCredValues.resx">
+      <DependentUpon>frmDeleteCredValues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmLAFDAUserGroups.resx">
+      <DependentUpon>frmLAFDAUserGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDeleteUserGroups.resx">
+      <DependentUpon>frmDeleteUserGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCreateUserGroups.resx">
+      <DependentUpon>frmCreateUserGroups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCreateCredValues.resx">
+      <DependentUpon>frmCreateCredValues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmHome.resx">
+      <DependentUpon>frmHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmOperationSelect.resx">
+      <DependentUpon>frmOperationSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Certificates\service.laf.appdev.pfx" />
+    <None Include="Certificates\service.laf.dev.pfx" />
+    <None Include="Certificates\service.laf.lloyds.pfx" />
+    <None Include="Certificates\service.laf.uat.pfx" />
+    <None Include="Configs\Prod Legacy\App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Configs\Sys LTP\App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Configs\SysTest Legacy Stable\App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Configs\UAT Legacy\App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="LAFBulkDataLoaderInput.xlsx" />
+    <None Include="LAFBulkDataLoader_TemporaryKey.pfx" />
+    <None Include="Lloyds.LAF.Agent.Restricted.2.0.23.nupkg" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Configs\Dev LTP\App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ReadMeDocument\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lloyds.LAF.Agent.Restricted\Lloyds.LAF.Agent.Restricted.csproj">
+      <Project>{986462f2-8739-4090-b0fd-97534847d032}</Project>
+      <Name>Lloyds.LAF.Agent.Restricted</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DLLs\Lloyds.LAF.Agent.Restricted.dll" />
+    <Content Include="DLLs\Lloyds.LAF.Audit.dll" />
+    <Content Include="DLLs\Lloyds.LAF.WebServices.Contracts.dll" />
+    <Content Include="DLLs\ServiceReferences.dll" />
+    <Content Include="StoredProcs\csp_InsertAuditEntry_CreateUser.sql" />
+    <Content Include="StoredProcs\csp_InsertUser.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

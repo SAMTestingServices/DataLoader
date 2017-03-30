@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Lloyds.LAF.Agent.Restricted</id>
+    <version>2.0.21</version>
+    <title>LAF Restricted Agent V2</title>
+    <authors>ITG</authors>
+    <owners>ITG</owners>
+    <iconUrl>http://www.lloyds.com/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This is the dll used locally by Relying Parties to enable them to retrieve Roles, create User Groups, etc.</description>
+    <copyright>Copyright Lloyds of London 2014</copyright>
+    <releaseNotes>
+      2.0.1-beta
+        1) Added the ability to update a user group name/description
+        2) Added the ability to update a credential value
+
+      2.0.2-beta
+        1) Added the ability to find user groups by their association to a specific credential value
+
+      2.0.3-beta
+        1) Added a non strongly named version of the DLL so people can pick which one they want!
+
+      2.0.4-beta
+        1) Added a better method for getting all of the user groups associated to a credential value
+
+      2.0.5-beta
+        1) Changed the Factory so the register method for types are public so I can actually mock/stub things outside of the LAF code base ;-)
+
+      2.0.6-beta
+        1) Changed the creential value ID so it is no longer internal only
+
+      2.0.7-beta
+        1) Added a new method for finding lots of credential values at the same time based on the urn and the value
+
+      2.0.8-beta
+        1) Changed the code base to use V2 version of the certain stored procedures to limit the risk to any other projects!
+
+      2.0.9-beta
+        1) Added in the missing references for the audit service
+      2.0.10
+        Release build
+      2.0.11
+        1) Added the ability to switch the caller provider to a non HttpContext aware one so the audit will work in console applications etc.
+        - Do this by adding "LAF_UseNonHttpCallerProvider" to the application settings with the value of "true"
+      2.0.12-13
+        1) Changed the isolation levels for transactions
+      2.0.14
+        1) Added a new audit level for editing a credential value
+        2) Sorted out the audit for saving a credential value/user group
+      2.0.15
+        1) Changed the application task to return a full blown application instead of an application ID. Much more useful!
+      2.0.16
+        1) Made the application ID settable
+      2.0.17
+        1) Added the ability to delete user groups and their associated relationships
+        2) Added the ability to delete credential values and their associated relationships
+      2.0.18
+      1) Fixed the assembly not having a strong name
+      2.0.19
+      1) Added the ability to search for user groups by their name
+      2.0.20
+      1) Corrected the name of the delete stored procedure
+      2.0.21
+      1) Corrected the fact the new search method wasn't on the IUserGroupTask interface
+    </releaseNotes>    
+  </metadata>
+  <files>    
+    <file src="Output\Lloyds.LAF.Audit.dll" target="lib\net35" />
+    <file src="Output\Lloyds.LAF.WebServices.Contracts.dll" target="lib\net35" />
+    <file src="Output\Lloyds.LAF.Agent.Restricted.dll" target="lib\net35" />
+    <file src="Output\Lloyds.LAF.Agent.Restricted.pdb" target="lib\net35" />    
+  </files>  
+</package>

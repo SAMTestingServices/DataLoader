@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Lloyds.LAF.Client</id>
+    <version>2.0.0.4</version>
+    <title>LAF Client</title>
+    <authors>ITG</authors>
+    <owners>ITG</owners>
+    <iconUrl>http://www.lloyds.com/favicon.ico</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An set of assemblies for use with Windows Identity Foundation on the Relying Party. This code helps a replying party/client integrate with the lloyds security token service (STS)</description>
+    <releaseNotes>This package contains the following:
+      1) Session Authenication Module - Namespace: Lloyds.LAF.IdentityModel.Services.LafSessionAuthenticationModule
+      2) Security Token Handler Session - Namespace: Lloyds.LAF.IdentityModel.Services.LafSessionAuthenticationModule.LafSessionSecurityTokenHandler
+      3) Session Security Token Cache - Namespace: Lloyds.LAF.IdentityModel.Tokens.SharedSessionSecurityTokenCache
+      4) Token Replay Cache - Namespace: Lloyds.LAF.IdentityModel.Tokens.SharedTokenReplayCache
+      5) Federation Authentication Module - Namespace: Lloyds.LAF.IdentityModel.Services.LafWsFederationAuthenticationModule
+         -This module should be used to enable a HTTP Status code of 401 to be returned to AJAX calls instead of a 302 redirect
+      6) Changed the SAM so you can turn off the sliding session for AJAX Calls based on the headers: X-Requested-With:XMLHttpRequest and X-Suppress-Sliding-Session:true
+      7) A LAF http handler that can be used to display the list of users claims 
+      
+      # 2.0.0.2
+      1) Changed the time out value for the internal cache (in memory one) so it is only 60 seconds. This is better for farm situations which don't use sticky sessions so a users token
+      once they have logged out does not remain valid in memory on one server but invalid on another when it it forced to hit the persistent cache
+      # 2.0.0.3
+      1) Added the LAF claims principal output handler
+      # 2.0.0.4
+      1) Added in a set of default configuration settings that will get added when you first install the package</releaseNotes>
+    <copyright>Copyright Lloyds of London 2014</copyright>
+    <references>
+      <reference file="Lloyds.LAF.WebServices.Contracts.dll" />
+      <reference file="Lloyds.LAF.IdentityModel.dll" />
+    </references>
+  </metadata>
+</package>

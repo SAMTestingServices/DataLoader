@@ -1,0 +1,15 @@
+﻿<configuration>
+  <appSettings>
+    <!--  
+    Example below shows you can use the pipe symbol to create a list of pages to supress sliding sessions on
+    
+    <add key="PreventLafSlidingSessionUrls" value="/|/Default.aspx"/>
+    -->
+    <add key="PreventLafSlidingSessionUrls" value=""/>
+  </appSettings>
+  <system.webServer>
+    <modules>
+      <add name="SupressSlidingSessionModule" type="Lloyds.LAF.IdentityModel.SupressSlidingSession.SupressSlidingSessionModule, Lloyds.LAF.IdentityModel.SupressSlidingSession" preCondition="managedHandler" />
+    </modules>
+  </system.webServer>
+</configuration>
